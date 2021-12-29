@@ -1,0 +1,85 @@
+.home-view {
+  min-height: 100vh;
+}
+.top-holder {
+  margin: 30px 0;
+  width: 92%;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 3%;
+}
+.create-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-layout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+.create-layout form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+}
+.options-holder {
+  width: 100%;
+}
+
+.separator p {
+  width: max-content;
+  white-space: nowrap;
+}
+
+.layout-item {
+  min-width: 300px;
+  width: 100%;
+  border: 1px solid #516391;
+  border-radius: 5px;
+  padding: 0 5%;
+  margin: 10px 0;
+  height: 60px;
+  background-color: #10131d;
+}
+.move-ic {
+  width: 15px;
+  height: 30px;
+  background-color: #ffffff;
+  margin-right: 20px;
+}
+.content-holder {
+  color: #ffffff;
+}
+.content-holder h3 {
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+.layouts-list {
+  min-width: 300px;
+}
+
+.validation-form-holder {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #516391;
+  padding: 5px 15px 15px 15px;
+  border-radius: 4px;
+}
+
+.layout-items-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.btn-delete-all {
+  margin: 10px;
+}

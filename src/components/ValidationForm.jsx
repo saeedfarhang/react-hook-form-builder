@@ -1,10 +1,5 @@
 import { useMemo, useState } from "react";
-import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
   const [validationForm, setValidationForm] = useState({
     required: false,
@@ -23,10 +18,9 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
   // }, [validationForm]);
 
   return (
-    <Container>
+    <div className="validation-form-holder">
       <form onSubmit={(e) => e.preventDefault()}>
-        <span>
-          <label htmlFor={"required-in"}>required?</label>
+        <span className="check-holder flex-center">
           <input
             id="required-in"
             type="checkbox"
@@ -38,7 +32,9 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
               }))
             }
           />
+          <label htmlFor={"required-in"}>required?</label>
         </span>
+        <label htmlFor={"required-in"}>Min</label>
         <input
           onChange={(e) =>
             setValidationForm((state) => ({
@@ -49,37 +45,43 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
           placeholder="min"
           type="number"
         />
+        <label htmlFor="max">Max</label>
         <input
+          id="max"
           onChange={(e) =>
             setValidationForm((state) => ({
               ...state,
               max: e.target.value,
             }))
           }
-          placeholder="max"
+          placeholder=""
           type="number"
         />
+        <label htmlFor="maxLength">MaxLength</label>
         <input
+          id="maxLength"
           onChange={(e) =>
             setValidationForm((state) => ({
               ...state,
               maxLength: e.target.value,
             }))
           }
-          placeholder="maxLength"
+          placeholder=""
           type="number"
         />
+        <label htmlFor="pattern">Pattern</label>
         <input
+          id="pattern"
           onChange={(e) =>
             setValidationForm((state) => ({
               ...state,
               pattern: e.target.value,
             }))
           }
-          placeholder="pattern"
+          placeholder=""
         />
       </form>
-    </Container>
+    </div>
   );
 };
 export default ValidationForm;

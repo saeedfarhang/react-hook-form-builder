@@ -1,24 +1,21 @@
-import styled from "styled-components";
+import Button from "../elements/Button";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 300px;
-`;
 const LayoutItem = ({ onDelete, onEdit, name, type }) => {
   return (
-    <Container>
-      <p
-        onClick={() => {
-          onEdit();
-        }}
-      >
-        {name ? name : "no name"}
-        {"\t"} || {type + "\t"} ||{" "}
-      </p>
-      <p onClick={() => onDelete(name)}>{"\t\t X \t\t"}</p>
-    </Container>
+    <div className=" layout-item flex-space-center">
+      <div className="content-holder flex-center">
+        <div className="move-ic"></div>
+        <h3>{name ? name : "no name"}</h3>
+      </div>
+      <div className="actions flex-space-center">
+        <Button className="btn-low" onClick={onEdit}>
+          edit
+        </Button>
+        <Button className="btn-low" onClick={() => onDelete(name)}>
+          delete
+        </Button>
+      </div>
+    </div>
   );
 };
 export default LayoutItem;

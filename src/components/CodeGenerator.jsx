@@ -1,53 +1,50 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Separator from "../elements/Separator";
+import Typography from "../elements/Typography";
 import { codeStrGenerator } from "../utilities/codeStrGenerator";
 import strToOption from "../utilities/convertOptionString";
 import TestStage from "./TestStage";
 
-const Container = styled.div`
-  width: 100%;
-  .code-holder {
-    width: 100%;
-    max-width: 600px;
-    overflow: auto;
-  }
-  margin: 10px 0 30px 0;
-`;
 const CodeGenerator = ({ inputs }) => {
   const [inputElms, setInputElms] = useState([]);
   useEffect(() => {
     let tempElms = [];
-    Object.values(inputs).map((item) => {
-      if (item) {
-        if (!item.options) {
-          tempElms.push(
-            `<input {...register${
-              item.validation
-                ? `("${item.name}",${JSON.stringify(item.validation)})`
-                : ""
-            }} ${item.type ? `type="${item.type}"` : ""} ${
-              item.value ? `value="${item.value}"` : ""
-            } ${
-              item.name ? `name="${item.name}" placeholder="${item.name}"` : ""
-            }/>`
-          );
-        } else if (item.options && item.type === "radio") {
-          strToOption(item.options).map((option) => {
+    Object.values(inputs)
+      .filter((item) => item)
+      .map((item) => {
+        if (item) {
+          if (!item.options) {
             tempElms.push(
-              `
+              `<input {...register${
+                item.validation
+                  ? `("${item.name}",${JSON.stringify(item.validation)})`
+                  : ""
+              }} ${item.type ? `type="${item.type}"` : ""} ${
+                item.value ? `value="${item.value}"` : ""
+              } ${
+                item.name
+                  ? `name="${item.name}" placeholder="${item.name}"`
+                  : ""
+              }/>`
+            );
+          } else if (item.options && item.type === "radio") {
+            strToOption(item.options).map((option) => {
+              tempElms.push(
+                `
               <input {...register${
                 item.validation
                   ? `("${item.name}"{${JSON.stringify(item.validation)})`
                   : ""
               }} ${item.type ? `type="${item.type}"` : ""} ${
-                option.value ? `value="${option.value}"` : ""
-              } ${item.name ? `name="${item.name}"` : ""}/>
+                  option.value ? `value="${option.value}"` : ""
+                } ${item.name ? `name="${item.name}"` : ""}/>
               `
-            );
-          });
-        } else if (item.options && item.type === "select") {
-          tempElms.push(
-            `
+              );
+            });
+          } else if (item.options && item.type === "select") {
+            tempElms.push(
+              `
             <select {...register${
               item.validation
                 ? `("${item.name}",${JSON.stringify(item.validation)})`
@@ -61,29 +58,31 @@ const CodeGenerator = ({ inputs }) => {
               )}
              </select>
              `
-          );
+            );
+          }
         }
-      }
-      setInputElms(tempElms);
-    });
+        setInputElms(tempElms);
+      });
   }, [inputs]);
 
   return (
-    <Container className="flex-col">
+    <div className="code-container flex-col">
+      <Separator title={"Code"} />
+      <Typography
+        variant="p"
+        weight="400"
+        margin="0"
+        fontSize="0.75rem"
+        color={"#ffffff"}
+      >
+        As you are making changes over the form, the code section will be
+        updated and you can copy the code as well.
+      </Typography>
       <div className="code-holder">
-        <pre
-          style={{
-            borderRadius: "15px",
-            backgroundColor: "#f0f0f0",
-            padding: "5px 10px",
-            width: "max-content",
-          }}
-        >
-          {codeStrGenerator(inputElms)}
-        </pre>
+        <pre className="code-view">{codeStrGenerator(inputElms)}</pre>
       </div>
-      <TestStage />
-    </Container>
+      {/* <TestStage /> */}
+    </div>
   );
 };
 export default CodeGenerator;

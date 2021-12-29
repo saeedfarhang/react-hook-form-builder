@@ -1,7 +1,11 @@
+@import "./styles/home.css";
+@import "./styles/general.css";
+@import "./styles/button.css";
+@import "./styles/code.css";
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,6 +13,8 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   min-height: 100vh;
+  background-color: #081229;
+  box-sizing: border-box;
 }
 
 code {
@@ -35,4 +41,21 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  box-sizing: border-box;
+}
+.flex-space-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sp-h-20 {
+  height: 20px;
+}
+.sp-h-10 {
+  height: 10px;
+}
+
+.check-holder {
+  width: fit-content;
 }

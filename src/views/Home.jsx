@@ -1,16 +1,10 @@
 import { useState } from "react";
-import styled from "styled-components";
 import CreateLayout from "../components/CreateLayout";
 import LayoutList from "../components/LayoutList";
 import LayoutsPreview from "../components/LayoutsPreview";
 import { FormInputsProvider } from "../contexts/formInputs.context";
+import Typography from "../elements/Typography";
 
-const Container = styled.div`
-  min-height: 100vh;
-  .top-holder {
-    margin: 30px 0;
-  }
-`;
 const HomeView = (props) => {
   const [layoutDetail, setLayoutDetail] = useState({
     name: undefined,
@@ -20,21 +14,35 @@ const HomeView = (props) => {
     validation: undefined,
   });
   return (
-    <Container className={"flex-col"}>
+    <div className={"home-view flex-col"}>
+      <div className="page-title flex-col">
+        <Typography
+          variant="h1"
+          fontSize={"3rem"}
+          color="#ffffff"
+          margin={"40px 0 0 0"}
+        >
+          Builder
+        </Typography>
+        <Typography variant="p" fontSize={"1rem"} color="#ec5990">
+          Build your form with code and example.
+        </Typography>
+      </div>
+
       <FormInputsProvider>
-        <div className="flex-space top-holder">
-          <CreateLayout
-            layoutDetail={layoutDetail}
-            setLayoutDetail={setLayoutDetail}
-          />
+        <div className="top-holder">
           <LayoutList
             layoutDetail={layoutDetail}
             setLayoutDetail={setLayoutDetail}
           />
+          <CreateLayout
+            layoutDetail={layoutDetail}
+            setLayoutDetail={setLayoutDetail}
+          />
+          <LayoutsPreview />
         </div>
-        <LayoutsPreview />
       </FormInputsProvider>
-    </Container>
+    </div>
   );
 };
 export default HomeView;

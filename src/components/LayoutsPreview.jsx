@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { FormInputsContext } from "../contexts/formInputs.context";
+import Separator from "../elements/Separator";
 import strToOption from "../utilities/convertOptionString";
 import CodeGenerator from "./CodeGenerator";
 
@@ -17,7 +18,7 @@ const LayoutsPreview = (props) => {
   const { inputs } = useContext(FormInputsContext);
   return (
     <Container>
-      <p>preview</p>
+      {/* <p>preview</p>
       <br />
       <div className="flex-col form-space">
         {Object.keys(inputs).length > 0
@@ -58,7 +59,7 @@ const LayoutsPreview = (props) => {
                 ))
             )
           : ""}
-      </div>
+      </div> */}
       <CodeGenerator inputs={inputs} />
     </Container>
   );
