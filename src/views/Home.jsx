@@ -14,7 +14,7 @@ const HomeView = (props) => {
     validation: undefined,
   });
   return (
-    <div className={"home-view flex-col"}>
+    <div className={"home-view "}>
       <div className="page-title flex-col">
         <Typography
           variant="h1"

@@ -1,21 +1,21 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
   const [validationForm, setValidationForm] = useState({
-    required: false,
-    min: undefined,
-    max: undefined,
-    maxLength: undefined,
-    pattern: undefined,
+    ...layoutDetail.validation,
   });
-  // useMemo(() => {
-  //   setLayoutDetail((state) => ({
-  //     ...state,
-  //     validation: {
-  //       ...validationForm,
-  //     },
-  //   }));
-  // }, [validationForm]);
+  useMemo(() => {
+    setLayoutDetail((state) => ({
+      ...state,
+      validation: {
+        ...validationForm,
+      },
+    }));
+  }, [validationForm]);
+
+  useEffect(() => {
+    console.log("layoutDetail", layoutDetail);
+  }, [layoutDetail]);
 
   return (
     <div className="validation-form-holder">
@@ -24,7 +24,7 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
           <input
             id="required-in"
             type="checkbox"
-            value={validationForm.required}
+            checked={validationForm.required}
             onChange={(e) =>
               setValidationForm((state) => ({
                 ...state,
@@ -34,19 +34,21 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
           />
           <label htmlFor={"required-in"}>required?</label>
         </span>
-        <label htmlFor={"required-in"}>Min</label>
+        <label htmlFor={"min"}>Min</label>
         <input
+          value={validationForm.min}
+          id="min"
           onChange={(e) =>
             setValidationForm((state) => ({
               ...state,
               min: e.target.value,
             }))
           }
-          placeholder="min"
           type="number"
         />
         <label htmlFor="max">Max</label>
         <input
+          value={validationForm.max}
           id="max"
           onChange={(e) =>
             setValidationForm((state) => ({
@@ -59,6 +61,7 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
         />
         <label htmlFor="maxLength">MaxLength</label>
         <input
+          value={validationForm.maxLength}
           id="maxLength"
           onChange={(e) =>
             setValidationForm((state) => ({
@@ -71,6 +74,7 @@ const ValidationForm = ({ layoutDetail, setLayoutDetail }) => {
         />
         <label htmlFor="pattern">Pattern</label>
         <input
+          value={validationForm.pattern}
           id="pattern"
           onChange={(e) =>
             setValidationForm((state) => ({

@@ -4,7 +4,6 @@
 }
 .code-holder {
   width: 100%;
-  max-width: 350px;
   overflow: auto;
 }
 .code-holder .code-view {
@@ -13,4 +12,16 @@
   color: white;
   padding: 5px 10px;
   width: max-content;
+  white-space: pre-wrap;
+  display: inline-block;
+  font-size: 0.8rem;
+}
+.code-container {
+  position: relative;
+}
+.cp-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 10;
 }

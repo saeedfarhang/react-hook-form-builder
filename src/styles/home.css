@@ -1,15 +1,16 @@
 .home-view {
-  min-height: 100vh;
+  min-height: 150vh;
 }
 .top-holder {
   margin: 30px 0;
-  width: 92%;
-  /* display: flex; */
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 3fr);
   justify-content: space-between;
   align-items: baseline;
-  gap: 3%;
+  gap: 6%;
+  padding: 0 10%;
 }
 .create-holder {
   display: flex;
@@ -82,4 +83,9 @@
 }
 .btn-delete-all {
   margin: 10px;
+}
+
+.option-helper {
+  width: min-content;
+  color: #ffffff;
 }

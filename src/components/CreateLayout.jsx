@@ -9,16 +9,17 @@ import ValidationForm from "./ValidationForm";
 const CreateLayout = ({ layoutDetail, setLayoutDetail }) => {
   const { inputs, setInputs } = useContext(FormInputsContext);
   const handleCreateLayout = () => {
+    console.log(inputs, layoutDetail);
     setInputs((state) => ({
       ...state,
       [layoutDetail.name]: layoutDetail,
     }));
-    setLayoutDetail({
+    setLayoutDetail(() => ({
       name: "",
       type: "text",
       options: undefined,
       validation: undefined,
-    });
+    }));
   };
 
   const [haveOptions, setHaveOptions] = useState(false);
@@ -48,6 +49,7 @@ const CreateLayout = ({ layoutDetail, setLayoutDetail }) => {
         This form allows you to create and update inputs. The Generate Form
         button will create a new form with the updates.
       </Typography>
+      <div className="sp-h-20"></div>
       <div className="create-layout">
         <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="name-h">Name:</label>
@@ -78,7 +80,9 @@ const CreateLayout = ({ layoutDetail, setLayoutDetail }) => {
             <option value="range">range</option>
           </select>
           {haveOptions && (
-            <div className="options-holder flex-col">
+            <div className="options-holder">
+              <label>Options:</label>
+              <div className="sp-h-20"></div>
               <input
                 style={{ width: "100%" }}
                 value={layoutDetail.options}
@@ -88,10 +92,10 @@ const CreateLayout = ({ layoutDetail, setLayoutDetail }) => {
                     options: e.target.value,
                   }))
                 }
-                placeholder="options"
+                placeholder="separate options with ,"
               />
-              <p style={{ width: "min-content" }}>
-                separate options with , example: value1:label1,value2:label2
+              <p className="option-helper">
+                example: value1:label1,value2:label2
               </p>
             </div>
           )}
