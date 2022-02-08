@@ -9,8 +9,8 @@
   grid-auto-columns: minmax(0, 3fr);
   justify-content: space-between;
   align-items: baseline;
-  gap: 6%;
-  padding: 0 10%;
+  gap: 5%;
+  padding: 0 5%;
 }
 .create-holder {
   display: flex;
